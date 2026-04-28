@@ -1,0 +1,51 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+// Extra responsive overrides that span multiple components
+
+@include respond-to('mobile') {
+  .tudor-toolbar {
+    &__right {
+      // width: 100%;
+      justify-content: flex-end;
+    }
+  }
+
+  .tudor-filters-drawer {
+    &__header,
+    &__footer {
+      padding-left: $spacing-md;
+      padding-right: $spacing-md;
+    }
+
+    &__body {
+      padding: $spacing-sm 0;
+    }
+  }
+
+  .tudor-filter-group {
+    &__toggle {
+      padding-left: $spacing-md;
+      padding-right: $spacing-md;
+    }
+
+    &__options {
+      padding-left: $spacing-md;
+      padding-right: $spacing-md;
+    }
+  }
+}
+
+// Print
+@media print {
+  .tudor-toolbar,
+  .tudor-load-more,
+  .tudor-filters-overlay,
+  .tudor-filters-drawer {
+    display: none !important;
+  }
+
+  .tudor-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}

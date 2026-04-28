@@ -1,0 +1,152 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+.tudor-filter-group {
+  border-bottom: 1px solid $color-border;
+
+  &__toggle {
+    @include reset-btn;
+    @include focus-ring;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: $spacing-md $spacing-xl;
+    gap: $spacing-sm;
+    text-align: left;
+
+    @include respond-to("mobile") {
+      padding: $spacing-md $spacing-lg;
+    }
+
+    &:hover {
+      .tudor-filter-group__label {
+        color: $red-tudor;
+      }
+    }
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__label {
+    flex: 1;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: $color-black;
+    transition: color $transition-fast;
+  }
+
+  &__count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 6px;
+    border-radius: 10px;
+    background: $red-tudor;
+    color: $color-white;
+    font-size: 10px;
+    font-weight: 700;
+  }
+
+  &__chevron {
+    color: $color-light;
+    flex-shrink: 0;
+    transition: transform $transition-fast;
+
+    &--open {
+      transform: rotate(180deg);
+    }
+  }
+
+  &__options {
+    padding: 0 $spacing-xl $spacing-md;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    @include respond-to("mobile") {
+      padding: 0 $spacing-lg $spacing-md;
+    }
+  }
+}
+
+.tudor-filter-option {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  padding: 8px 0;
+  cursor: pointer;
+  user-select: none;
+
+  &:hover {
+    .tudor-filter-option__text {
+      color: $color-black;
+    }
+  }
+
+  &--active {
+    .tudor-filter-option__box {
+      background: $color-black;
+      border-color: $color-black;
+
+      &::after {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .tudor-filter-option__text {
+      color: $color-black;
+      font-weight: 500;
+    }
+  }
+
+  &__checkbox {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+  }
+
+  &__box {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    border: 1.5px solid $color-border;
+    border-radius: $radius-sm;
+    background: $color-white;
+    transition:
+      background $transition-fast,
+      border-color $transition-fast;
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 5px;
+      width: 5px;
+      height: 9px;
+      border: 2px solid $color-white;
+      border-top: none;
+      border-left: none;
+      transform: rotate(45deg) scale(0.6);
+      opacity: 0;
+      transition:
+        opacity $transition-fast,
+        transform $transition-fast;
+    }
+  }
+
+  &__text {
+    font-size: 13px;
+    color: $color-mid;
+    transition: color $transition-fast;
+    line-height: 1.4;
+  }
+}

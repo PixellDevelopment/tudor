@@ -1,0 +1,58 @@
+@use "../inc/index" as *;
+
+.primary-title-tudor {
+  @include primary-title-tudor;
+}
+
+.primary-text-tudor {
+  @include primary-text-tudor;
+}
+
+.primary-cta-tudor {
+  @include primary-cta-tudor;
+}
+
+.container-text-tudor {
+  @include container-text-tudor;
+}
+
+#contact-tudor {
+  .contact-title {
+    .primary-title-tudor {
+      span {
+        margin-bottom: 0;
+      }
+    }
+  }
+  .contact-form {
+    max-width: 75%;
+    .fields-required {
+      display: none;
+    }
+    .privacy-text {
+      margin-top: px2rem(5);
+      margin-left: px2rem(10);
+    }
+    .button-send {
+      input {
+        border: px2rem(1) solid #ddd;
+      }
+    }
+  }
+}
+
+.only-mobile {
+  display: none !important;
+
+  @media (max-width: $md) {
+    display: block !important;
+  }
+}
+
+.only-desktop {
+  display: block;
+
+  @media (max-width: $md) {
+    display: none !important;
+  }
+}

@@ -1,0 +1,15 @@
+// Tudor Collection – Main SCSS
+// Struttura matrioska: ogni componente è annidato nel proprio blocco BEM
+
+@use 'variables' as *;
+@use 'mixins' as *;
+@use 'transitions';
+@use 'collection';
+@use 'toolbar';
+@use 'card';
+@use 'filters-drawer';
+@use 'filter-group';
+@use 'sort-dropdown';
+@use 'load-more';
+@use 'skeleton';
+@use 'responsive';

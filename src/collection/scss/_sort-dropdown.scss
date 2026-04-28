@@ -1,0 +1,76 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+.tudor-sort {
+  position: relative;
+
+  &__trigger {
+    @include reset-btn;
+    @include focus-ring;
+    display: inline-flex;
+    align-items: center;
+    gap: $spacing-sm;
+    padding: 10px $spacing-md;
+    border: 1px solid $color-border;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: $color-charcoal;
+    background: $color-white;
+    white-space: nowrap;
+    transition: border-color $transition-fast;
+    outline: none;
+
+    &:hover {
+      border-color: $color-black;
+    }
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__chevron {
+    transition: transform $transition-fast;
+
+    &.open {
+      transform: rotate(180deg);
+    }
+  }
+
+  &__dropdown {
+    position: absolute;
+    top: calc(100% + 4px);
+    right: 0;
+    min-width: 240px;
+    background: $color-white;
+    border: 1px solid $color-border;
+    box-shadow: 0 8px 30px rgba($color-black, 0.1);
+    z-index: $z-dropdown;
+    overflow: hidden;
+    border-radius: $radius-sm;
+  }
+
+  &__option {
+    @include reset-btn;
+    display: block;
+    width: 100%;
+    text-align: right;
+    padding: 12px $spacing-lg;
+    font-size: 13px;
+    color: $color-mid;
+    transition:
+      background $transition-fast,
+      color $transition-fast;
+
+    &:hover {
+      background: $color-bg;
+      color: $color-black;
+    }
+
+    &--active {
+      color: $color-black;
+      font-weight: 600;
+      background: $color-gold-pale;
+    }
+  }
+}

@@ -1,0 +1,75 @@
+@use 'variables' as *;
+
+// Overlay fade
+.overlay-fade-enter-active,
+.overlay-fade-leave-active { transition: opacity $transition-mid; }
+.overlay-fade-enter-from,
+.overlay-fade-leave-to { opacity: 0; }
+
+// Drawer slide from right
+.drawer-slide-enter-active,
+.drawer-slide-leave-active {
+  transition: transform $transition-slow, opacity $transition-mid;
+}
+.drawer-slide-enter-from,
+.drawer-slide-leave-to {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+// Dropdown fade+scale
+.dropdown-fade-enter-active,
+.dropdown-fade-leave-active {
+  transition: opacity $transition-fast, transform $transition-fast;
+  transform-origin: top right;
+}
+.dropdown-fade-enter-from,
+.dropdown-fade-leave-to {
+  opacity: 0;
+  transform: scaleY(0.95);
+}
+
+// Filter expand accordion
+.filter-expand-enter-active,
+.filter-expand-leave-active {
+  transition: max-height $transition-mid, opacity $transition-fast;
+  overflow: hidden;
+}
+.filter-expand-enter-from,
+.filter-expand-leave-to {
+  max-height: 0 !important;
+  opacity: 0;
+}
+.filter-expand-enter-to,
+.filter-expand-leave-from {
+  max-height: 600px;
+  opacity: 1;
+}
+
+// Product list stagger
+.product-list-enter-active {
+  transition: opacity $transition-mid, transform $transition-mid;
+}
+.product-list-enter-from {
+  opacity: 0;
+  transform: translateY(12px);
+}
+.product-list-move {
+  transition: transform $transition-slow;
+}
+.product-list-leave-active {
+  position: absolute;
+  opacity: 0;
+}
+
+// Generic fade
+.fade-enter-active,
+.fade-leave-active { transition: opacity $transition-fast; }
+.fade-enter-from,
+.fade-leave-to { opacity: 0; }
+
+// Skeleton shimmer keyframe
+@keyframes skeleton-shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}

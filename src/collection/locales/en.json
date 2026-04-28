@@ -1,0 +1,49 @@
+{
+  "allFilters": "All filters",
+  "clearFilters": "Clear filters",
+  "products": "products",
+  "product": "product",
+  "sortBy": "Sort by",
+  "sortOptions": {
+    "featured": "Featured",
+    "bestSeller": "Best seller",
+    "alphaAZ": "Alphabetically, A-Z",
+    "alphaZA": "Alphabetically, Z-A",
+    "priceAsc": "Price, low to high",
+    "priceDesc": "Price, high to low",
+    "dateAsc": "Date, old to new",
+    "dateDesc": "Date, new to old"
+  },
+  "filters": {
+    "style": "Style",
+    "collections": "Tudor Collection",
+    "measures": "Size",
+    "calibers": "Caliber",
+    "materials": "Material",
+    "bracelets": "Bracelet",
+    "lunettes": "Bezel",
+    "impermeabilities": "Water resistance",
+    "movements": "Movement",
+    "forms": "Shape",
+    "buckles": "Buckle",
+    "price": "Price",
+    "availability": "Availability",
+    "colors": "Dial"
+  },
+  "availabilityOptions": {
+    "available": "Available",
+    "unavailable": "Not available"
+  },
+  "styleOptions": {
+    "men": "Men",
+    "women": "Women"
+  },
+  "discoverMore": "Discover more",
+  "loadingMore": "Loading...",
+  "noProducts": "No products found",
+  "discover": "Discover",
+  "close": "Close",
+  "apply": "Apply filters",
+  "availability": "Availability",
+  "available": "Available"
+}

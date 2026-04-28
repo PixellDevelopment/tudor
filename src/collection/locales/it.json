@@ -1,0 +1,49 @@
+{
+  "allFilters": "Tutti i filtri",
+  "clearFilters": "Cancella filtri",
+  "products": "prodotti",
+  "product": "prodotto",
+  "sortBy": "Ordina per",
+  "sortOptions": {
+    "featured": "In primo piano",
+    "bestSeller": "Best seller",
+    "alphaAZ": "In ordine alfabetico, A-Z",
+    "alphaZA": "In ordine alfabetico, Z-A",
+    "priceAsc": "Prezzo crescente",
+    "priceDesc": "Prezzo decrescente",
+    "dateAsc": "Data, da meno a più recente",
+    "dateDesc": "Data, da più a meno recente"
+  },
+  "filters": {
+    "style": "Stile",
+    "collections": "Collezione Tudor",
+    "measures": "Dimensione",
+    "calibers": "Calibro",
+    "materials": "Materiale",
+    "bracelets": "Bracciale",
+    "lunettes": "Lunetta",
+    "impermeabilities": "Impermeabilità",
+    "movements": "Movimento",
+    "forms": "Forma",
+    "buckles": "Fibbia",
+    "price": "Prezzo",
+    "availability": "Disponibilità",
+    "colors": "Quadrante"
+  },
+  "availabilityOptions": {
+    "available": "Disponibile",
+    "unavailable": "Non disponibile"
+  },
+  "styleOptions": {
+    "men": "Uomo",
+    "women": "Donna"
+  },
+  "discoverMore": "Scopri di più",
+  "loadingMore": "Caricamento...",
+  "noProducts": "Nessun prodotto trovato",
+  "discover": "Scopri",
+  "close": "Chiudi",
+  "apply": "Applica filtri",
+  "availability": "Disponibilità",
+  "available": "Disponibile"
+}

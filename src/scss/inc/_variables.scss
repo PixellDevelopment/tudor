@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display:300,300i,400,400i,500,500i,600,700,700i,900,900i|Montserrat:300,400,500,600,700&display=swap');
+
+/********************************************************
+ *** Fonts
+ ********************************************************/
+$title-font: "Playfair Display", serif;
+$text-font: "futura-pt", sans-serif;
+$button-font: 'Montserrat', sans-serif;
+$fontsize1: 16;
+
+/********************************************************
+ *** Colors
+ ********************************************************/
+$white: #fff;
+$black: #000;
+$red-tudor: #be0100;
+$grey-tudor: #858585;
+$black-tudor: #0a0a0a;
+$alt-grey-tudor: #aaaaaa;
+$grey: #858585;
+
+/********************************************************
+ *** Breakpoints
+ ********************************************************/
+$xxxs: 320px;
+$xxxs-min: $xxxs + 1;
+$xxs: 480px;
+$xxs-min: $xxs + 1;
+$xs: 576px;
+$xs-min: $xs + 1;
+$sm: 767px;
+$sm-min: $sm + 1;
+$md: 991px;
+$md-min: $md + 1;
+$lg: 1024px;
+$lg-min: $lg + 1;
+$xlg: 1280px;
+$xlg-min: $xlg + 1;
+$hd: 1366px;
+$hd-min: $hd + 1;
+$xxlg: 1440px;
+$xxlg-min: $xxlg + 1;
+$xxxlg: 1600px;
+$xxxlg-min: $xxxlg + 1;
+$fhd: 1920px;
+$fhd-min: $fhd + 1;
+
+/********************************************************
+ *** Animations
+ ********************************************************/
+$transition: all 0.3s ease-in-out;

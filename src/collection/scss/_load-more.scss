@@ -1,0 +1,64 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+.tudor-load-more {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-md;
+  padding-bottom: $spacing-2xl;
+
+  &__btn {
+    @include reset-btn;
+    @include focus-ring;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 200px;
+    padding: 16px $spacing-xl;
+    border: 1px solid $color-black;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: $color-black;
+    background: $color-white;
+    transition:
+      background $transition-fast,
+      color $transition-fast;
+    position: relative;
+
+    &:hover:not(:disabled) {
+      background: $color-black;
+      color: $color-white;
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+
+  &__spinner {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba($color-black, 0.2);
+    border-top-color: $color-black;
+    border-radius: 50%;
+    animation: tudor-spin 0.7s linear infinite;
+  }
+
+  &__info {
+    font-size: 12px;
+    color: $color-light;
+    letter-spacing: 0.06em;
+    margin: 0;
+  }
+}
+
+@keyframes tudor-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

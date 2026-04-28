@@ -1,0 +1,41 @@
+@use "../inc/index" as *;
+
+.footer-tudor {
+  background: $black;
+  text-align: center;
+  padding-bottom: px2rem(40);
+  margin-bottom: px2rem(100);
+  @media (max-width: $md) {
+    margin-bottom: 0;
+  }
+  .footer-tudor-menu {
+    border-top: px2rem(1) solid rgba(255, 255, 255, 0.5);
+    border-bottom: px2rem(1) solid rgba(255, 255, 255, 0.5);
+    padding-top: px2rem(20);
+    padding-bottom: px2rem(20);
+    ul {
+      display: flex;
+      justify-content: center;
+      li {
+        margin-left: px2rem(50);
+        @media (max-width: $md) {
+          margin-left: px2rem(25);
+        }
+        a {
+          font-weight: 300;
+          color: $white;
+          font-size: px2rem(18);
+          letter-spacing: px2rem(0.5);
+        }
+        &:first-child {
+          margin-left: 0;
+        }
+        &:last-child {
+          a {
+            color: $red-tudor;
+          }
+        }
+      }
+    }
+  }
+}

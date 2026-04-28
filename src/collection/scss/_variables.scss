@@ -1,0 +1,49 @@
+// Tudor Design Tokens
+// Palette ispirata all'estetica Tudor: nero, oro, acciaio
+
+$color-black: #0a0a0a;
+$color-dark: #1a1a1a;
+$color-charcoal: #2c2c2c;
+$color-mid: #555;
+$color-light: #999;
+$color-border: #e2e0dc;
+$color-bg: #f7f6f4;
+$color-white: #ffffff;
+$red-tudor: #be0100;
+$color-gold: #b8982a;
+$color-gold-light: #d4af37;
+$color-gold-pale: #f5f0e0;
+
+$color-red: #c0392b; // Tudor accent
+
+$font-heading: "Playfair Display", serif;
+$font-body: "futura-pt", sans-serif;
+
+$grid-cols-desktop: 4;
+$grid-cols-tablet: 3;
+$grid-cols-mobile: 2;
+
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 40px;
+$spacing-2xl: 64px;
+
+$radius-sm: 2px;
+$radius-md: 4px;
+$radius-lg: 8px;
+
+$shadow-card: 0 2px 12px rgba(0, 0, 0, 0.06);
+$shadow-drawer: -4px 0 40px rgba(0, 0, 0, 0.15);
+
+$transition-fast: 150ms ease;
+$transition-mid: 250ms ease;
+$transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+
+$drawer-width: 420px;
+$drawer-width-sm: 100vw;
+
+$z-overlay: 200;
+$z-drawer: 201;
+$z-dropdown: 100;

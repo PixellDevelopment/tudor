@@ -1,0 +1,665 @@
+@use "variables" as *;
+@use "functions" as *;
+
+@mixin container {
+  padding-left: 8%;
+  padding-right: 8%;
+
+  @media (max-width: $sm) {
+    padding-left: 7%;
+    padding-right: 7%;
+  }
+}
+
+@mixin container-text-tudor {
+  max-width: px2vw(1000);
+  margin: 0 auto;
+  @include pad-section;
+  text-align: center;
+  @media (max-width: $md) {
+    max-width: 100%;
+  }
+  &.smaller {
+    @media (max-width: $md) {
+      max-width: 90%;
+    }
+  }
+}
+
+@mixin primary-title-tudor {
+  font-family: $text-font;
+  font-size: px2rem(48);
+  font-weight: 900;
+  text-transform: uppercase;
+  color: $black;
+  margin-bottom: px2rem(30);
+  display: block;
+  span {
+    font-size: px2rem(20);
+    color: $red-tudor;
+    display: block;
+  }
+  @media (max-width: $md) {
+    font-size: px2rem(32);
+  }
+}
+
+@mixin primary-text-tudor {
+  font-size: px2rem(20);
+  line-height: 1.3;
+  font-weight: 300;
+  letter-spacing: px2rem(0.25);
+  @media (max-width: $md) {
+    font-size: px2rem(18);
+  }
+}
+
+@mixin primary-cta-tudor {
+  font-family: $text-font;
+  padding-top: px2rem(10);
+  padding-bottom: px2rem(10);
+  padding-left: px2rem(30);
+  padding-right: px2rem(30);
+  border-radius: px2rem(30);
+  background: $red-tudor;
+  color: $white;
+  transition: $transition;
+  border: none;
+  @media (max-width: $xs) {
+    width: 100%;
+  }
+
+  span {
+    font-family: $text-font;
+    font-size: px2rem(14);
+    font-weight: 700;
+    color: $white;
+  }
+
+  img {
+    width: px2rem(12);
+    height: px2rem(12);
+    margin-left: px2rem(8);
+  }
+
+  &:hover {
+    color: $white;
+    background: $red-tudor;
+  }
+  &.alt {
+    background: $white;
+    border: px2rem(1) solid #ddd;
+    color: $red-tudor;
+    span {
+      color: $white;
+    }
+    &:hover {
+      color: $white;
+      background: $red-tudor;
+    }
+    @media (max-width: $xs) {
+      width: 100%;
+    }
+  }
+}
+
+@mixin flex-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+@mixin flex-center-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin reset-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+@mixin background-features {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+@mixin slider-button-prev-next {
+  background-image: url("../images/icons/next-light-mode-default-button.svg");
+  @include background-features;
+  width: px2rem(44);
+  height: px2rem(44);
+  right: 4%;
+  margin-right: px2rem(-22);
+  opacity: 0.8;
+  transition: all 0.3s ease-in-out;
+
+  @media (max-width: $sm) {
+    display: none;
+  }
+
+  &.swiper-button-prev {
+    transform: rotate(-180deg);
+    left: 4%;
+    margin-left: px2rem(-22);
+  }
+
+  &.swiper-button-disabled {
+    display: none;
+    pointer-events: none;
+  }
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &:after {
+    display: none;
+  }
+}
+
+@mixin slider-button-prev-next-single {
+  background-image: url("../images/icons/next-light-mode-default-button-white.svg");
+  @include background-features;
+  width: px2rem(44);
+  height: px2rem(44);
+  right: px2rem(30);
+  opacity: 0.8;
+  transition: all 0.3s ease-in-out;
+
+  @media (max-width: $sm) {
+    display: none;
+  }
+
+  &.swiper-button-prev {
+    transform: rotate(-180deg);
+    left: px2rem(30);
+  }
+
+  &.swiper-button-disabled {
+    display: none;
+    pointer-events: none;
+  }
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &:after {
+    display: none;
+  }
+}
+
+@mixin dynamic-pagination {
+  bottom: px2rem(40);
+
+  @media (max-width: $sm) {
+    bottom: px2rem(20);
+  }
+
+  .swiper-pagination-bullet {
+    width: px2rem(20);
+    height: px2rem(4);
+    background: $dark_grey;
+    border-radius: 0;
+    transform: scale(1);
+
+    &.swiper-pagination-bullet-active {
+      width: px2rem(50);
+      height: px2rem(4);
+      background: $green;
+    }
+  }
+}
+
+@mixin pad-section {
+  padding-top: 10vh;
+  padding-bottom: 10vh;
+
+  @media (max-width: $md) {
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+  }
+}
+
+@mixin margin-image {
+  margin-top: px2rem(20);
+  margin-bottom: px2rem(10);
+}
+
+@mixin video-player {
+  padding-top: 56.25%;
+  position: relative;
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .video-cpo-v2-play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: px2rem(60);
+    height: px2rem(60);
+    margin-top: px2rem(-30);
+    margin-left: px2rem(-30);
+    cursor: pointer;
+  }
+}
+
+@mixin program-section {
+  @include pad-section;
+
+  .common-program-cpo-v2-text {
+    p {
+      margin-top: px2rem(20);
+      margin-bottom: 0;
+    }
+  }
+
+  .common-program-cpo-v2-image {
+    padding-top: 10vh;
+  }
+}
+
+@mixin feature-model-section {
+  @include pad-section;
+  padding-bottom: 0;
+
+  .feature-cpo-v2-text {
+    .body20-light {
+      margin-top: px2rem(20);
+      margin-bottom: 0;
+    }
+  }
+
+  .feature-cpo-v2-image {
+    @include flex-center;
+  }
+
+  &.feature-less-margin {
+    padding-top: px2rem(45);
+    padding-bottom: px2rem(45);
+  }
+}
+
+@mixin certification-section {
+  @include pad-section;
+
+  .common-certification-cpo-v2-text {
+    padding-bottom: 10vh;
+
+    @media (max-width: $sm) {
+      padding-bottom: 7vh;
+    }
+
+    p {
+      margin-top: px2rem(20);
+      margin-bottom: 0;
+    }
+  }
+}
+
+@mixin form {
+  form {
+    margin-top: px2rem(80);
+
+    @media (max-width: $sm) {
+      margin-top: px2rem(50);
+      width: 80%;
+      margin: 0 auto;
+    }
+
+    .form-input-cpo-v2 {
+      @include flex-between;
+      flex-wrap: wrap;
+
+      .form-cpo-v2-single {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+
+        p {
+          display: flex;
+          flex-direction: column;
+          justify-content: start;
+          align-items: start;
+          width: 100%;
+        }
+
+        &.gender {
+          width: 19%;
+
+          @media (max-width: $sm) {
+            width: 29%;
+          }
+        }
+
+        &.nome,
+        &.cognome,
+        &.prefisso {
+          width: 39%;
+        }
+
+        &.nome {
+          @media (max-width: $sm) {
+            width: 69%;
+          }
+        }
+
+        &.prefisso {
+          @media (max-width: $sm) {
+            width: 39%;
+          }
+        }
+
+        &.cognome {
+          @media (max-width: $sm) {
+            width: 100%;
+          }
+        }
+
+        &.numero {
+          width: 59.5%;
+
+          @media (max-width: $sm) {
+            width: 59%;
+          }
+        }
+
+        &.choice {
+          margin-bottom: px2rem(30);
+          margin-top: px2rem(-10);
+        }
+
+        .wpcf7-form-control-wrap {
+          width: 100%;
+          margin-top: px2rem(10);
+
+          .intl-tel-input {
+            width: 100%;
+          }
+
+          &[data-name="privacy"] {
+            width: initial;
+          }
+        }
+
+        .flag-container {
+          display: block;
+        }
+      }
+
+      .legend16-bold {
+        opacity: 0.5;
+      }
+
+      input,
+      select {
+        @include body20-bold;
+        background: $white;
+        width: 100%;
+        border: none;
+        border-bottom: px2rem(1) solid rgba(69, 44, 30, 0.4);
+        margin-bottom: px2rem(40);
+        outline: none;
+        height: px2rem(40);
+
+        @media (max-width: $sm) {
+          margin-bottom: px2rem(30);
+        }
+
+        &.wpcf7-not-valid {
+          &::placeholder {
+            color: $red_rolex;
+          }
+
+          &::-moz-placeholder {
+            color: $red_rolex;
+          }
+        }
+      }
+
+      textarea {
+        width: 100%;
+        @include body20-light;
+        outline: none;
+        padding: px2rem(40);
+        border: none;
+        background: $beige;
+
+        &.bg-white {
+          background: $white;
+        }
+      }
+
+      .country-select {
+        margin-bottom: px2rem(30);
+
+        @media (max-width: $sm) {
+          margin-bottom: px2rem(20);
+        }
+      }
+
+      .dial-code,
+      .country-name {
+        @include legend16-bold;
+      }
+    }
+
+    .checkbox-privacy-cpo-v2 {
+      margin-top: px2rem(20);
+
+      .check {
+        position: relative;
+        // padding-left: px2rem(30);
+        margin-bottom: 0;
+        display: flex;
+        align-items: center;
+
+        @media (max-width: $sm) {
+          text-align: left;
+        }
+
+        br {
+          display: none;
+        }
+
+        .wpcf7-form-control-wrap {
+          display: inline;
+          width: initial;
+        }
+
+        .wpcf7-list-item {
+          margin: 0;
+        }
+
+        p {
+          margin-left: px2rem(15);
+          margin-bottom: 0;
+          padding-top: px2rem(7.5);
+
+          @media (max-width: $sm) {
+            font-size: px2rem(12);
+            line-height: 1.3;
+          }
+        }
+
+        a {
+          color: $rolex_green;
+          font-weight: 600;
+          text-decoration: none;
+        }
+
+        input {
+          &.checkbox-form {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+
+            &:checked {
+              ~ .wpcf7-list-item-label,
+              ~ .checkmark {
+                &:before {
+                  display: block;
+                }
+
+                .checkmark-bg {
+                  position: absolute;
+                  top: px2rem(-2.5);
+                  left: px2rem(-2.5);
+                  height: px2rem(25);
+                  width: px2rem(25);
+                  background: $rolex_green;
+                  margin: auto;
+                  border-radius: 49.9999%;
+                }
+
+                &:after {
+                  background-image: url("../../images/svg/check-white-button.svg");
+                  @include background-features;
+                  width: px2rem(12);
+                  height: px2rem(12);
+                  display: block;
+                  position: absolute;
+                  top: px2rem(3);
+                  left: px2rem(3);
+                }
+              }
+            }
+          }
+        }
+
+        .checkbox {
+          position: absolute;
+          opacity: 0;
+          cursor: pointer;
+          height: 0;
+          width: 0;
+
+          &:checked ~ .checkmark,
+          &:checked ~ .wpcf7-list-item-label {
+            background: $white;
+            top: 0;
+            left: 0;
+            height: px2rem(20);
+            width: px2rem(20);
+            text-indent: -9999px;
+            border-radius: 49.9999%;
+
+            .checkmark-bg {
+              position: absolute;
+              top: 0;
+              left: 0;
+              height: px2rem(20);
+              width: px2rem(20);
+              background: $rolex_green;
+              margin: auto;
+              border-radius: 49.9999%;
+            }
+
+            &:after {
+              display: block;
+            }
+          }
+        }
+
+        .checkmark,
+        .wpcf7-list-item-label {
+          position: absolute;
+          top: 0;
+          left: 0;
+          display: block;
+          text-indent: -9999px;
+          height: px2rem(20);
+          width: px2rem(20);
+          background: transparent;
+          border: 1px solid $rolex_green;
+          cursor: pointer;
+          overflow: hidden;
+          border-radius: 49.9999%;
+        }
+      }
+    }
+
+    .button-send-cpo-v2 {
+      text-align: center;
+      margin: 0 auto;
+      margin-top: px2rem(40);
+
+      button {
+        border: none;
+        outline: none;
+      }
+    }
+
+    .wpcf7-not-valid-tip {
+      margin-top: px2rem(-30) !important;
+      margin-bottom: px2rem(30) !important;
+      @include legend16-bold;
+      text-align: left;
+      color: $red_rolex;
+
+      @media (max-width: $sm) {
+        margin-top: px2rem(-20) !important;
+        margin-bottom: px2rem(20) !important;
+      }
+    }
+
+    .country-select {
+      .country-list {
+        @media (max-width: $sm) {
+          position: fixed;
+          top: px2rem(120);
+          left: 7.5vw;
+          bottom: px2rem(80);
+          max-height: 100%;
+          width: 85vw;
+        }
+      }
+    }
+
+    br {
+      display: none;
+    }
+  }
+
+  .wpcf7-response-output {
+    display: none;
+  }
+}
+
+@mixin hoverOnIcons {
+  .icon-no-over {
+    display: block;
+  }
+
+  .icon-over {
+    display: none;
+  }
+
+  &:hover {
+    .icon-no-over {
+      display: none;
+    }
+
+    .icon-over {
+      display: block;
+    }
+  }
+}

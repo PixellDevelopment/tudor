@@ -1,0 +1,145 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+.tudor-filters-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba($color-black, 0.45);
+  z-index: $z-overlay;
+  backdrop-filter: blur(2px);
+}
+
+.tudor-filters-drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: $drawer-width;
+  height: 100vh;
+  height: 100dvh;
+  background: $color-white;
+  z-index: $z-drawer;
+  display: flex;
+  flex-direction: column;
+  box-shadow: $shadow-drawer;
+  z-index: 99999;
+
+  @include respond-to("mobile") {
+    width: $drawer-width-sm;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: $spacing-lg $spacing-xl;
+    border-bottom: 1px solid $color-border;
+    flex-shrink: 0;
+
+    @include respond-to("mobile") {
+      padding: $spacing-md $spacing-lg;
+    }
+  }
+
+  &__title {
+    font-family: $font-body;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: $color-black;
+    margin: 0;
+  }
+
+  &__close {
+    @include reset-btn;
+    @include focus-ring;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    color: $color-mid;
+    border: 1px solid transparent;
+    border-radius: $radius-sm;
+    transition:
+      color $transition-fast,
+      border-color $transition-fast;
+
+    &:hover {
+      color: $color-black;
+      border-color: $color-border;
+    }
+  }
+
+  &__body {
+    flex: 1;
+    overflow-y: auto;
+    padding: $spacing-md 0;
+    scrollbar-width: thin;
+    scrollbar-color: $color-border transparent;
+
+    &::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: $color-border;
+      border-radius: 2px;
+    }
+  }
+
+  &__footer {
+    display: flex;
+    gap: $spacing-sm;
+    padding: $spacing-lg $spacing-xl;
+    border-top: 1px solid $color-border;
+    flex-shrink: 0;
+
+    @include respond-to("mobile") {
+      padding: $spacing-md $spacing-lg;
+    }
+  }
+
+  &__clear {
+    @include reset-btn;
+    @include focus-ring;
+    flex: 1;
+    padding: 12px $spacing-md;
+    border: 1px solid $color-border;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: $color-mid;
+    transition:
+      border-color $transition-fast,
+      color $transition-fast;
+
+    &:hover {
+      border-color: $color-black;
+      color: $color-black;
+    }
+  }
+
+  &__apply {
+    @include reset-btn;
+    @include focus-ring;
+    flex: 2;
+    padding: 12px $spacing-md;
+    background: $color-black;
+    color: $color-white;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: background $transition-fast;
+
+    &:hover {
+      background: $red-tudor;
+    }
+  }
+}

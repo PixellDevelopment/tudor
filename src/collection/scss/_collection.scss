@@ -1,0 +1,42 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.tudor-collection {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 $spacing-lg;
+  font-family: $font-body;
+  color: $color-black;
+  background: $color-white;
+
+  @include respond-to('mobile') {
+    padding: 0 $spacing-md;
+  }
+
+  &--mobile {
+    .tudor-grid {
+      grid-template-columns: repeat($grid-cols-mobile, 1fr);
+      gap: $spacing-md;
+    }
+  }
+}
+
+.tudor-no-results {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-2xl $spacing-lg;
+  color: $color-light;
+  gap: $spacing-md;
+
+  svg { opacity: 0.4; }
+
+  p {
+    font-size: 14px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin: 0;
+  }
+}

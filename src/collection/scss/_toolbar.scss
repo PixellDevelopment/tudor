@@ -1,0 +1,162 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+.tudor-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $spacing-lg 0;
+  border-bottom: 1px solid $color-border;
+  margin-bottom: $spacing-xl;
+  gap: $spacing-md;
+  flex-wrap: wrap;
+
+  @include respond-to("mobile") {
+    padding: $spacing-md 0;
+    margin-bottom: $spacing-lg;
+  }
+
+  &__left {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+    flex-wrap: wrap;
+  }
+
+  &__right {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+  }
+
+  &__filter-btn {
+    @include reset-btn;
+    @include focus-ring;
+    display: inline-flex;
+    align-items: center;
+    gap: $spacing-sm;
+    padding: 10px $spacing-md;
+    border: 1px solid $color-black;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: $color-black;
+    background: $color-white;
+    transition:
+      background $transition-fast,
+      color $transition-fast;
+    position: relative;
+
+    &:hover {
+      background: $color-black;
+      color: $color-white;
+
+      svg {
+        stroke: $color-white;
+      }
+    }
+
+    &--active {
+      background: $color-black;
+      color: $color-white;
+
+      svg {
+        stroke: $color-white;
+      }
+    }
+
+    svg {
+      flex-shrink: 0;
+      transition: stroke $transition-fast;
+    }
+  }
+
+  &__badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: $red-tudor;
+    color: $color-white;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  &__clear-btn {
+    @include reset-btn;
+    @include focus-ring;
+    display: inline-flex;
+    align-items: center;
+    gap: $spacing-xs;
+    padding: 10px $spacing-md;
+    border: 1px solid $color-border;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    color: $color-mid;
+    background: $color-white;
+    transition:
+      border-color $transition-fast,
+      color $transition-fast;
+
+    &:hover {
+      border-color: $color-red;
+      color: $color-red;
+
+      svg {
+        stroke: $color-red;
+      }
+    }
+
+    svg {
+      transition: stroke $transition-fast;
+    }
+  }
+
+  &__count {
+    font-size: 13px;
+    color: $color-light;
+    letter-spacing: 0.04em;
+
+    @include respond-to("mobile") {
+      display: none;
+    }
+  }
+}
+
+// Mobile quick filter pills
+.tudor-quick-filters {
+  display: flex;
+  gap: $spacing-sm;
+  overflow-x: auto;
+  padding-bottom: $spacing-sm;
+  margin-bottom: $spacing-md;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.tudor-quick-filter {
+  @include reset-btn;
+  @include focus-ring;
+  flex-shrink: 0;
+  padding: 6px 14px;
+  border: 1px solid $color-border;
+  border-radius: 20px;
+  font-size: 12px;
+  color: $color-mid;
+  white-space: nowrap;
+  transition: all $transition-fast;
+
+  &--active {
+    border-color: $color-black;
+    background: $color-black;
+    color: $color-white;
+  }
+}

@@ -1,0 +1,302 @@
+@use "../inc/index" as *;
+
+.preview-tudor {
+  @include pad-section;
+  padding-top: 0;
+  .preview-tudor-container {
+    @include flex-center-between;
+    @media (max-width: $md) {
+      flex-direction: column;
+    }
+    .preview-tudor-slider {
+      width: 60%;
+      @include flex-center-between;
+      @media (max-width: $md) {
+        width: 100%;
+        flex-direction: column;
+      }
+      .swiper-tudor-product {
+        width: 90%;
+
+        @media (max-width: $md) {
+          width: 100%;
+          margin-left: 0;
+          margin-bottom: px2rem(30);
+        }
+
+        .swiper-wrapper {
+          .swiper-slide {
+            text-align: center;
+            img {
+              height: px2vw(600);
+              object-fit: cover;
+
+              @media (max-width: $md) {
+                height: initial;
+                width: 100%;
+              }
+            }
+          }
+        }
+      }
+      .swiper-tudor-product-thumbs {
+        width: 10%;
+
+        @media (max-width: $md) {
+          width: 100%;
+        }
+
+        .swiper-wrapper {
+          @media (max-width: $md) {
+            justify-content: space-between;
+          }
+
+          .swiper-slide {
+            cursor: pointer;
+            width: px2rem(80) !important;
+            height: px2rem(80) !important;
+
+            @media (max-width: $md) {
+              width: px2rem(50) !important;
+              height: px2rem(50) !important;
+            }
+
+            img {
+              width: px2rem(80);
+              height: px2rem(80) !important;
+              border: px2rem(1) solid rgba(0, 0, 0, 0.3);
+              object-fit: contain;
+              @media (max-width: $md) {
+                width: px2rem(50) !important;
+                height: px2rem(50) !important;
+              }
+            }
+
+            &:last-child {
+              img {
+                margin-bottom: 0;
+
+                @media (max-width: $md) {
+                  margin-right: 0;
+                }
+              }
+            }
+            &.swiper-slide-thumb-active {
+              position: relative;
+              &:before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(190, 1, 0, 0.2);
+              }
+            }
+          }
+        }
+      }
+    }
+    .preview-tudor-info {
+      width: 30%;
+      @media (max-width: $md) {
+        width: 100%;
+        margin-top: px2rem(50);
+      }
+      .preview-tudor-info-details {
+        .primary-title-tudor {
+          span {
+            color: $black;
+          }
+        }
+      }
+      .out-of-stock {
+        display: none;
+      }
+      .preview-tudor-main-features {
+        margin-bottom: px2rem(40);
+        span {
+          font-size: px2rem(20);
+          display: block;
+          line-height: 1.2;
+        }
+      }
+      .preview-tudor-info-details-brand-price {
+        font-size: px2rem(20);
+        font-weight: 700;
+      }
+      .in-stock {
+        display: none;
+      }
+      .primary-cta-tudor {
+        text-transform: uppercase;
+      }
+      .preview-tudor-info-details-brand-information {
+        margin-top: px2rem(30);
+        @media (max-width: $md) {
+          text-align: center;
+        }
+        a {
+          text-transform: uppercase;
+          @media (max-width: $xs) {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
+.specs-tudor {
+  @include pad-section;
+  padding-top: 0;
+  .specs-tudor-family-desc {
+    max-width: 75%;
+    margin: 0 auto;
+    margin-bottom: px2rem(100);
+    text-align: center;
+    @media (max-width: $md) {
+      max-width: 100%;
+      margin-top: px2rem(30);
+      margin-bottom: px2rem(50);
+    }
+  }
+  .specs-tudor-title {
+    text-align: center;
+    margin-bottom: px2rem(80);
+    @media (max-width: $md) {
+      margin-bottom: px2rem(30);
+    }
+    span {
+      font-size: px2rem(28);
+      font-weight: 700;
+    }
+  }
+  .specs-tudor-list {
+    ul {
+      @include flex-between;
+      flex-wrap: wrap;
+      li {
+        width: 49%;
+        display: flex;
+        margin-bottom: px2rem(30);
+        @media (max-width: $md) {
+          width: 100%;
+        }
+        img {
+          height: px2rem(30);
+          margin-right: px2rem(20);
+        }
+        span {
+          font-size: px2rem(20);
+          @media (max-width: $md) {
+            font-size: px2rem(16);
+          }
+          span {
+            display: block;
+            font-weight: 700;
+            margin-bottom: px2rem(10);
+            @media (max-width: $md) {
+              margin-bottom: px2rem(5);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.related-tudor {
+  @include pad-section;
+  .related-tudor-title {
+    text-align: center;
+  }
+  .related-tudor-list {
+    @include flex-between;
+    flex-wrap: wrap;
+    margin-top: px2rem(50);
+    .related-tudor-single {
+      width: 25%;
+      text-align: center;
+      @media (max-width: $md) {
+        width: 50%;
+      }
+      .related-tudor-single-image {
+        aspect-ratio: 1 / 1;
+        transition: all 0.3s ease-in-out;
+        margin-bottom: px2rem(16);
+        overflow: hidden;
+        position: relative;
+        img {
+          display: block;
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          padding: 16px;
+          @media (max-width: $md) {
+            padding: px2rem(8);
+          }
+        }
+      }
+      .related-tudor-single-text {
+        span {
+          font-size: px2rem(12);
+          color: $black;
+          font-weight: 700;
+          text-transform: uppercase;
+          display: block;
+          margin-bottom: px2rem(4);
+          line-height: 1.3;
+          @media (max-width: $md) {
+            font-size: px2rem(11);
+          }
+          &.related-tudor-single-title {
+            font-size: px2rem(14);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: $black;
+            margin-bottom: px2rem(4);
+            @media (max-width: $md) {
+              font-size: px2rem(11);
+            }
+          }
+          &.related-tudor-single-price {
+            font-size: px2rem(14);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+            @media (max-width: $md) {
+              font-size: px2rem(12);
+            }
+          }
+        }
+      }
+      &:hover {
+        .related-tudor-single-image {
+          transform: scale(1.04);
+        }
+
+        .related-tudor-single-title {
+          color: $red-tudor;
+        }
+      }
+    }
+  }
+  .related-tudor-more {
+    text-align: center;
+    margin-top: px2rem(80);
+    @media (max-width: $md) {
+      margin-top: px2rem(50);
+      margin-bottom: px2rem(30);
+    }
+    a {
+      text-transform: uppercase;
+    }
+  }
+  &.home {
+    padding-top: 0;
+    .related-tudor-list {
+      margin-top: 0;
+    }
+  }
+}

@@ -1,0 +1,119 @@
+@use "../inc/index" as *;
+
+.intro-tudor {
+  .container-text-tudor {
+    padding-bottom: 0;
+  }
+}
+
+.world-tudor {
+  .world-tudor-image {
+    // height: px2vw(660);
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
+
+.slider-tudor {
+  padding-bottom: px2rem(120);
+  .slider-tudor-container {
+    position: relative;
+    .swiper {
+      .swiper-slide {
+        .swiper-slide-text {
+          margin-top: px2rem(20);
+          text-align: center;
+          span {
+            font-size: px2rem(20);
+            font-weight: 900;
+            display: block;
+            margin-bottom: px2rem(10);
+          }
+        }
+      }
+    }
+    .custom-tudor-prev,
+    .custom-tudor-next {
+      position: absolute;
+      top: px2vw(192.5);
+      left: px2rem(-75);
+      width: px2rem(40);
+      height: px2rem(40);
+      z-index: 9;
+      cursor: pointer;
+    }
+    .custom-tudor-prev {
+      transform: rotate(180deg);
+    }
+    .custom-tudor-next {
+      left: initial;
+      right: px2rem(-75);
+    }
+  }
+  .slider-tudor-discover-more {
+    margin-top: px2rem(100);
+    text-align: center;
+    @media (max-width: $md) {
+      margin-top: px2rem(50);
+    }
+    a {
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+  }
+}
+
+.about-tudor {
+  @include pad-section;
+  .about-tudor-text {
+    text-align: center;
+  }
+  .about-tudor-list {
+    @include flex-between;
+    margin-top: px2rem(60);
+    .about-tudor-single {
+      width: 32%;
+      .about-tudor-single-text {
+        margin-top: px2rem(20);
+        text-align: center;
+        span {
+          font-size: px2rem(20);
+          font-weight: 900;
+          display: block;
+          margin-bottom: px2rem(10);
+        }
+      }
+    }
+  }
+  .swiper {
+    .swiper-wrapper {
+      .swiper-slide {
+        .swiper-slide-text {
+          margin-top: px2rem(20);
+          text-align: center;
+          span {
+            font-size: px2rem(20);
+            font-weight: 900;
+            display: block;
+            margin-bottom: px2rem(10);
+          }
+        }
+      }
+    }
+  }
+  .about-tudor-discover-more {
+    margin-top: px2rem(100);
+    text-align: center;
+    @media (max-width: $md) {
+      margin-top: px2rem(50);
+      margin-bottom: px2rem(30);
+    }
+    a {
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+  }
+}

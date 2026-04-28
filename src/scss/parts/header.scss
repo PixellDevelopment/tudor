@@ -1,0 +1,139 @@
+@use "../inc/index" as *;
+
+.header-tudor {
+  padding-top: px2rem(190);
+  padding-left: px2rem(30);
+  padding-right: px2rem(30);
+  padding-bottom: px2rem(30);
+  @include flex-center-between;
+  @media (max-width: $md) {
+    padding: px2rem(20);
+    padding-top: px2rem(100);
+    z-index: 999;
+  }
+  .header-tudor-menu {
+    ul {
+      @include reset-list;
+      display: flex;
+      align-items: center;
+      li {
+        margin-left: px2rem(50);
+        a {
+          font-weight: 300;
+          color: $black;
+          font-size: px2rem(18);
+          letter-spacing: px2rem(0.5);
+        }
+        &:last-child {
+          background: $red-tudor;
+          padding: px2rem(6) px2rem(30);
+          border-radius: px2rem(20);
+          border: px2rem(1) solid $red-tudor;
+          @include flex-center;
+          transition: all 0.3s ease-in-out;
+          a {
+            color: $white;
+            transition: all 0.3s ease-in-out;
+          }
+          &:hover {
+            background: $white;
+            a {
+              color: $red-tudor;
+            }
+          }
+        }
+      }
+    }
+  }
+  .header-tudor-menu-trigger {
+    display: flex;
+    align-items: center;
+    img {
+      height: px2rem(15);
+      transition: all 0.3s ease-in-out;
+      &.rotate {
+        transform: rotate(180deg);
+      }
+    }
+  }
+}
+
+.menu-mobile-new-tudor {
+  display: none;
+  @media (max-width: $md) {
+    position: absolute;
+    top: px2rem(180);
+    left: 0;
+    width: 100%;
+    z-index: 99;
+    background: $white;
+    box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.3);
+    padding-bottom: px2rem(50);
+    transition: all 0.3s ease-in-out;
+    height: 0;
+    opacity: 0;
+    display: none;
+  }
+  &.opened {
+    @media (max-width: $md) {
+      height: initial;
+      padding-bottom: px2rem(50);
+      opacity: 1;
+    }
+  }
+  ul {
+    max-width: 50%;
+    margin: 0 auto;
+    text-align: center;
+    li {
+      margin-top: px2rem(20);
+      a {
+        font-weight: 300;
+        color: $black;
+        font-size: px2rem(18);
+        letter-spacing: px2rem(0.5);
+      }
+      &:last-child {
+        background: $red-tudor;
+        padding: px2rem(6) px2rem(30);
+        border-radius: px2rem(20);
+        border: px2rem(1) solid $red-tudor;
+        @include flex-center;
+        transition: all 0.3s ease-in-out;
+        a {
+          color: $white;
+          transition: all 0.3s ease-in-out;
+        }
+        &:hover {
+          background: $white;
+          a {
+            color: $red-tudor;
+          }
+        }
+      }
+    }
+  }
+}
+
+.tudor-breadcrumb {
+  padding-left: px2rem(100);
+  padding-right: px2rem(100);
+  ol {
+    display: flex;
+    li {
+      margin-right: px2rem(10);
+      .separator {
+        margin-right: px2rem(10);
+      }
+      a {
+        font-size: px2rem(14);
+        color: $black;
+      }
+      .current {
+        font-size: px2rem(14);
+        font-weight: 700;
+        color: $red-tudor;
+      }
+    }
+  }
+}
