@@ -141,9 +141,123 @@ class Tudor_Public
 				return pxl_translate('Orologio', 'Watches') . ' ' . get_the_title() .  ' | ' . get_bloginfo('name');
 			case 'description':
 				//cassa in acciaio, 36 mm, lunetta con diamanti
-				return pxl_translate('Scopri l’orologio TUDOR', 'Discover the TUDOR watch') . ' ' . get_the_title() .  ' ' . $tudor_attributes['Reference'] . pxl_translate('presentato presso', 'presented at') . get_bloginfo('name');
+				return pxl_translate("Scopri l'orologio TUDOR", 'Discover the TUDOR watch') . ' ' . get_the_title() .  ' ' . $tudor_attributes['Reference'] . pxl_translate('presentato presso', 'presented at') . get_bloginfo('name');
 			default:
 				return '';
 		}
+	}
+
+	/**
+	 * Fix WPML language switcher URLs on Tudor product pages.
+	 *
+	 * Elementor Pro theme builder changes the global $post during header rendering,
+	 * so the WPML language switcher widget reads the Elementor template post instead
+	 * of the actual product post, generating the same URL for all languages.
+	 * We use $wp_the_query (never overridden by Elementor) to find the real product
+	 * and rebuild the correct per-language URLs.
+	 */
+	public function fix_wpml_language_switcher_urls(string $url, array $data): string
+	{
+		static $running = false;
+		if ($running) {
+			return $url;
+		}
+
+		global $wp_the_query;
+
+		if (
+			! $wp_the_query ||
+			! $wp_the_query->is_singular('product') ||
+			! function_exists('icl_object_id')
+		) {
+			return $url;
+		}
+
+		$product_id = (int) $wp_the_query->queried_object_id;
+		if (! $product_id) {
+			return $url;
+		}
+
+		$lang_code = $data['language_code'] ?? ($data['code'] ?? '');
+		if (! $lang_code) {
+			return $url;
+		}
+
+		$translated_id = (int) icl_object_id($product_id, 'product', false, $lang_code);
+		if (! $translated_id) {
+			return $url;
+		}
+
+		$current_lang = defined('ICL_LANGUAGE_CODE') ? ICL_LANGUAGE_CODE : 'it';
+
+		$running = true;
+		do_action('wpml_switch_language', $lang_code);
+		$new_url = get_permalink($translated_id);
+		do_action('wpml_switch_language', $current_lang);
+		$running = false;
+
+		return $new_url ?: $url;
+	}
+
+	/**
+	 * JS fallback: fix WPML language switcher links in footer.
+	 * Runs client-side after HTML is fully rendered, bypassing any
+	 * PHP-level cache (WPML LS model cache, Elementor, page cache).
+	 */
+	public function fix_wpml_switcher_via_js(): void
+	{
+		global $wp_the_query;
+
+		if (
+			! $wp_the_query ||
+			! $wp_the_query->is_singular('product') ||
+			! function_exists('icl_object_id')
+		) {
+			return;
+		}
+
+		$product_id   = (int) $wp_the_query->queried_object_id;
+		$current_lang = defined('ICL_LANGUAGE_CODE') ? ICL_LANGUAGE_CODE : 'it';
+
+		if (! $product_id) {
+			return;
+		}
+
+		$fixes = [];
+		$active_langs = apply_filters('wpml_active_languages', null, ['skip_missing' => 0]);
+
+		if (! is_array($active_langs)) {
+			return;
+		}
+
+		foreach ($active_langs as $lang_code => $lang_data) {
+			if ($lang_code === $current_lang) {
+				continue;
+			}
+			$translated_id = (int) icl_object_id($product_id, 'product', false, $lang_code);
+			if (! $translated_id) {
+				continue;
+			}
+			do_action('wpml_switch_language', $lang_code);
+			$url = get_permalink($translated_id);
+			do_action('wpml_switch_language', $current_lang);
+			if ($url) {
+				$fixes[$lang_code] = $url;
+			}
+		}
+
+		if (empty($fixes)) {
+			return;
+		}
+
+		echo '<script>';
+		foreach ($fixes as $lang_code => $url) {
+			printf(
+				'document.querySelectorAll(".wpml-ls-item-%s a.wpml-ls-link").forEach(function(a){a.href="%s";});',
+				esc_js($lang_code),
+				esc_url($url)
+			);
+		}
+		echo '</script>';
 	}
 }

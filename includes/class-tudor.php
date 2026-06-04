@@ -190,6 +190,8 @@ class Tudor
 		$this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'enqueue_scripts');
 		$this->loader->add_action('wpseo_title', $plugin_public, 'dynamic_seo', 10, 1);
 		$this->loader->add_action('wpseo_metadesc', $plugin_public, 'dynamic_seo', 10, 1);
+		$this->loader->add_filter('wpml_ls_language_url', $plugin_public, 'fix_wpml_language_switcher_urls', 20, 2);
+		$this->loader->add_action('wp_footer', $plugin_public, 'fix_wpml_switcher_via_js', 99, 0);
 	}
 
 	/**

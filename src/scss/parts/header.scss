@@ -120,6 +120,7 @@
   padding-right: px2rem(100);
   ol {
     display: flex;
+    list-style: none;
     li {
       margin-right: px2rem(10);
       .separator {

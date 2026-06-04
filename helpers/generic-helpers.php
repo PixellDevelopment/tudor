@@ -134,7 +134,7 @@ if (!function_exists("tudor_breadcrumb")) {
 	{
 		$home_url = home_url('/');
 		$site_name = get_bloginfo('name');
-		$orologi_url = '/orologi-preziosi-viterbo/';
+		$orologi_url = '#';
 		$tudor_url = '/tudor/collezione/';
 
 		echo '<nav class="tudor-breadcrumb" aria-label="breadcrumb">';

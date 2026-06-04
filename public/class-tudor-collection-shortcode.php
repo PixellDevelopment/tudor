@@ -204,7 +204,7 @@ class Tudor_Collection_Shortcode
         if (! file_exists($manifest_path)) {
             if (defined('WP_DEBUG') && WP_DEBUG) {
                 // phpcs:ignore WordPress.PHP.DevelopmentFunctions
-                error_log('[Tudor] manifest.json non trovato in: ' . $manifest_path);
+                // error_log('[Tudor] manifest.json non trovato in: ' . $manifest_path);
             }
             return;
         }
