@@ -1,16 +1,16 @@
 {
   "src/scss/style.scss": {
-    "file": "css/style.6Cv8tG8z.css",
+    "file": "css/style.HleXAKUZ.css",
     "src": "src/scss/style.scss",
     "isEntry": true
   },
   "src/sjs/main.js": {
-    "file": "js/main-DhQ5z5rv.js",
+    "file": "js/main-Debtnp0m.js",
     "name": "main",
     "src": "src/sjs/main.js",
     "isEntry": true,
     "css": [
-      "css/style.6Cv8tG8z.css"
+      "css/style.HleXAKUZ.css"
     ]
   }
 }

@@ -33,7 +33,15 @@ $tudor_case_en = str_replace('Lugs', '<br> Lugs', $tudor_case_en);
 $tudor_case_en = str_replace('Case', '<br> Case', $tudor_case_en);
 
 $watch_details = get_prod_data($post->ID, 'WatchDetail');
-$family_name = $watch_details['WCollection'];
+$family_name = $watch_details['WCollection'] ?? null;
+
+// Fallback: prende il nome della categoria padre più vicina
+if (empty($family_name)) {
+    $terms = wp_get_post_terms($post->ID, 'product_cat');
+    if (!is_wp_error($terms) && !empty($terms)) {
+        $family_name = $terms[0]->name;
+    }
+}
 
 include(TUDOR_ROOT . "/sections/header/header-tudor.php");
 include(TUDOR_ROOT . "/sections/single/preview-tudor.php");

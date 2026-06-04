@@ -1,433 +1,432 @@
 @use "../inc/index" as *;
 
 .contact {
-  &.pad-top {
-    padding-top: px2rem(250);
+	&.pad-top {
+		padding-top: px2rem(250);
 
-    @media (max-width: $sm) {
-      padding-top: px2rem(150);
-    }
-  }
+		@media (max-width: $sm) {
+			padding-top: px2rem(150);
+		}
+	}
 
-  .contact-title {
-    text-align: center;
-    position: relative;
-    padding-top: px2rem(10);
+	.contact-title {
+		text-align: center;
+		position: relative;
+		padding-top: px2rem(10);
 
-    span {
-      margin-bottom: px2rem(25);
-    }
-  }
+		span {
+			margin-bottom: px2rem(25);
+		}
+	}
 
-  .contact-form {
-    max-width: px2rem(700);
-    margin: 0 auto;
-    margin-top: px2rem(30);
+	.contact-form {
+		max-width: px2rem(700);
+		margin: 0 auto;
+		margin-top: px2rem(30);
 
-    @media (max-width: $sm) {
-      margin-top: px2rem(20);
-    }
+		@media (max-width: $sm) {
+			margin-top: px2rem(20);
+		}
 
-    form {
-      margin-top: px2rem(40);
+		form {
+			margin-top: px2rem(40);
 
-      @media (max-width: $sm) {
-        margin-top: px2rem(30);
-      }
+			@media (max-width: $sm) {
+				margin-top: px2rem(30);
+			}
 
-      .input-group {
-        display: flex;
-        justify-content: space-between;
-        align-items: baseline;
-        margin-bottom: px2rem(30);
+			.input-group {
+				display: flex;
+				justify-content: space-between;
+				align-items: baseline;
+				margin-bottom: px2rem(30);
 
-        @media (max-width: $sm) {
-          margin-bottom: 0;
-        }
+				@media (max-width: $sm) {
+					margin-bottom: 0;
+				}
 
-        &.textarea-group {
-          margin-bottom: px2rem(30);
+				&.textarea-group {
+					margin-bottom: px2rem(30);
 
-          @media (max-width: $sm) {
-            margin-bottom: 0;
-          }
-        }
+					@media (max-width: $sm) {
+						margin-bottom: 0;
+					}
+				}
 
-        .wpcf7-form-control-wrap {
-          width: 48% !important;
+				.wpcf7-form-control-wrap {
+					width: 48% !important;
 
-          @media (max-width: $sm) {
-            width: 100% !important;
-            margin-bottom: 0;
-          }
+					@media (max-width: $sm) {
+						width: 100% !important;
+						margin-bottom: 0;
+					}
 
-          &[data-name='messaggio'],
-          &[data-name='date'],
-          &[data-name='model-reference'] {
-            width: 100% !important;
-          }
+					&[data-name="messaggio"],
+					&[data-name="date"],
+					&[data-name="model-reference"] {
+						width: 100% !important;
+					}
 
-          &[data-name="file-cv"] {
-            width: 100% !important;
-            display: block;
+					&[data-name="file-cv"] {
+						width: 100% !important;
+						display: block;
 
-            .wpcf7-not-valid-tip {
-              position: absolute;
-              top: px2rem(50);
-            }
-          }
+						.wpcf7-not-valid-tip {
+							position: absolute;
+							top: px2rem(50);
+						}
+					}
 
-          &[data-name='servizio'] {
-            position: relative;
-            margin: 0 auto;
+					&[data-name="servizio"] {
+						position: relative;
+						margin: 0 auto;
 
-            @media (max-width: $sm) {
-              margin-top: px2rem(-7.5);
-            }
+						@media (max-width: $sm) {
+							margin-top: px2rem(-7.5);
+						}
 
-            select {
-              background: rgba(216, 216, 216, 0.2);
-              cursor: pointer;
-              // -webkit-appearance: none;
-              // -moz-appearance: none;
-              // visibility: hidden;
-            }
-          }
-        }
+						select {
+							background: rgba(216, 216, 216, 0.2);
+							cursor: pointer;
+							// -webkit-appearance: none;
+							// -moz-appearance: none;
+							// visibility: hidden;
+						}
+					}
+				}
 
-        input,
-        textarea,
-        select {
-          width: 100%;
-          background: none;
-          border: none;
-          padding-left: 1em;
-          background: transparent;
-          font-family: $text-font;
-          font-size: px2rem(17);
-          font-weight: 400;
-          font-stretch: normal;
-          line-height: normal;
-          color: $black;
-          outline: none;
-          height: px2rem(50);
-          border: px2rem(1) solid $black;
-          text-transform: uppercase;
+				input,
+				textarea,
+				select {
+					width: 100%;
+					background: none;
+					border: none;
+					padding-left: 1em;
+					background: transparent;
+					font-family: $text-font;
+					font-size: px2rem(17);
+					font-weight: 400;
+					font-stretch: normal;
+					line-height: normal;
+					color: $black;
+					outline: none;
+					height: px2rem(50);
+					border: px2rem(1) solid $black;
+					text-transform: uppercase;
 
-          @media (max-width: $sm) {
-            width: 100%;
-            //margin-bottom: px2rem(30);
-            height: px2rem(50);
-            font-size: px2rem(15);
-            font-weight: 300;
-            letter-spacing: px2rem(0.9);
-            margin-bottom: px2rem(15);
-          }
-        }
+					@media (max-width: $sm) {
+						width: 100%;
+						//margin-bottom: px2rem(30);
+						height: px2rem(50);
+						font-size: px2rem(15);
+						font-weight: 300;
+						letter-spacing: px2rem(0.9);
+						margin-bottom: px2rem(15);
+					}
+				}
 
-        [data-name='messaggio'],
-        [data-name='model-reference'] {
-          margin-bottom: px2rem(30);
+				[data-name="messaggio"],
+				[data-name="model-reference"] {
+					margin-bottom: px2rem(30);
 
-          @media (max-width: $sm) {
-            margin-bottom: 0;
-          }
+					@media (max-width: $sm) {
+						margin-bottom: 0;
+					}
 
-          textarea {
-            height: initial;
-            padding-top: 1em;
-            width: 100%;
-            max-height: px2rem(150);
-          }
-        }
+					textarea {
+						height: initial;
+						padding-top: 1em;
+						width: 100%;
+						max-height: px2rem(150);
+					}
+				}
 
-        .fields-required {
-          font-size: px2rem(14);
-          font-weight: 400;
-          color: $black;
-          padding-bottom: px2rem(10);
-          text-align: center;
-          display: block;
-          width: 100%;
-          font-family: $button-font;
-          margin-top: px2rem(30);
+				.fields-required {
+					font-size: px2rem(14);
+					font-weight: 400;
+					color: $black;
+					padding-bottom: px2rem(10);
+					text-align: center;
+					display: block;
+					width: 100%;
+					font-family: $button-font;
+					margin-top: px2rem(30);
 
-          @media (max-width: $sm) {
-            display: block;
-            padding-left: 0;
-            margin-bottom: px2rem(30);
-            justify-content: center;
-            font-size: px2rem(13);
-          }
-        }
-      }
+					@media (max-width: $sm) {
+						display: block;
+						padding-left: 0;
+						margin-bottom: px2rem(30);
+						justify-content: center;
+						font-size: px2rem(13);
+					}
+				}
+			}
 
-      .check-privacy {
-        width: 100%;
+			.check-privacy {
+				width: 100%;
+				display: flex;
+				@media (max-width: $sm) {
+					width: 100%;
+					margin-top: px2rem(20);
+				}
 
-        @media (max-width: $sm) {
-          width: 100%;
-          margin-top: px2rem(20)
-        }
+				.checkbox-hide {
+					position: absolute;
+					opacity: 0;
+					cursor: pointer;
+					height: 0;
+					width: 0;
 
-        .checkbox-hide {
-          position: absolute;
-          opacity: 0;
-          cursor: pointer;
-          height: 0;
-          width: 0;
+					&:checked {
+						~ .checkmark {
+							&:after {
+								display: block;
+							}
+						}
+					}
+				}
 
-          &:checked {
-            ~.checkmark {
-              &:after {
-                display: block;
-              }
-            }
-          }
-        }
+				.check-privacy-box {
+					position: relative;
+					display: flex;
+					margin-top: px2rem(-10);
 
-        .check-privacy-box {
-          position: relative;
-          display: flex;
-          margin-top: px2rem(-10);
+					.wpcf7-form-control-wrap {
+						display: inline !important;
+						width: initial !important;
+					}
 
-          .wpcf7-form-control-wrap {
-            display: inline !important;
-            width: initial !important;
-          }
+					.wpcf7-list-item {
+						margin: 0;
+					}
 
-          .wpcf7-list-item {
-            margin: 0;
-          }
+					.wpcf7-list-item-label,
+					.checkmark {
+						display: block;
+						height: px2rem(20);
+						width: px2rem(20);
+						background: none;
+						border: 1px solid $black;
+						cursor: pointer;
+						text-indent: -9999px;
+						position: relative;
 
-          .wpcf7-list-item-label,
-          .checkmark {
-            display: block;
-            height: px2rem(20);
-            width: px2rem(20);
-            background: none;
-            border: 1px solid $black;
-            cursor: pointer;
-            text-indent: -9999px;
-            position: relative;
+						@media (max-width: $sm) {
+							height: px2rem(18);
+							width: px2rem(18);
+						}
 
-            @media (max-width: $sm) {
-              height: px2rem(18);
-              width: px2rem(18);
-            }
+						&:before {
+							content: "";
+							position: absolute;
+							display: none;
+							left: 0;
+							right: 0;
+							top: px2rem(-5);
+							bottom: 0;
+							margin: auto;
+							width: px2rem(7.5);
+							height: px2rem(15);
+							border: solid $black;
+							border-width: 0 2px 2px 0;
+							-webkit-transform: rotate(45deg);
+							-ms-transform: rotate(45deg);
+							transform: rotate(45deg);
+							transition: $transition;
+						}
+					}
 
-            &:before {
-              content: "";
-              position: absolute;
-              display: none;
-              left: 0;
-              right: 0;
-              top: px2rem(-5);
-              bottom: 0;
-              margin: auto;
-              width: px2rem(7.5);
-              height: px2rem(15);
-              border: solid $black;
-              border-width: 0 2px 2px 0;
-              -webkit-transform: rotate(45deg);
-              -ms-transform: rotate(45deg);
-              transform: rotate(45deg);
-              transition: $transition;
-            }
-          }
+					br,
+					p {
+						display: none;
+					}
 
-          br,
-          p {
-            display: none;
-          }
+					.checkbox-hide {
+						position: absolute;
+						opacity: 0;
+						cursor: pointer;
+						height: 0;
+						width: 0;
 
-          .checkbox-hide {
-            position: absolute;
-            opacity: 0;
-            cursor: pointer;
-            height: 0;
-            width: 0;
+						&:checked {
+							~ .wpcf7-list-item-label,
+							~ .checkmark {
+								&:before {
+									display: block;
+									transition: $transition;
+								}
+							}
+						}
+					}
 
-            &:checked {
+					.checkmark {
+						position: absolute;
+						top: 0;
+						left: 0;
+						height: px2rem(20);
+						width: px2rem(20);
+						background: none;
+						border: 1px solid $black;
+						cursor: pointer;
 
-              ~.wpcf7-list-item-label,
-              ~.checkmark {
-                &:before {
-                  display: block;
-                  transition: $transition;
-                }
-              }
-            }
-          }
+						@media (max-width: $sm) {
+							height: px2rem(18);
+							width: px2rem(18);
+						}
 
-          .checkmark {
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: px2rem(20);
-            width: px2rem(20);
-            background: none;
-            border: 1px solid $black;
-            cursor: pointer;
+						&:after {
+							content: "";
+							position: absolute;
+							display: none;
+							left: 0;
+							right: 0;
+							top: 0;
+							bottom: 0;
+							margin: auto;
+							background: $black;
+							margin: 10px;
+						}
+					}
 
-            @media (max-width: $sm) {
-              height: px2rem(18);
-              width: px2rem(18);
-            }
+					.privacy-text {
+						margin-left: px2rem(30);
+						font-size: px2rem(11);
+						font-family: $button-font;
+						display: block;
+						line-height: px2rem(15);
+						color: $black;
+						margin-bottom: px2rem(20);
+						margin-top: px2rem(-2);
+						cursor: pointer;
 
-            &:after {
-              content: "";
-              position: absolute;
-              display: none;
-              left: 0;
-              right: 0;
-              top: 0;
-              bottom: 0;
-              margin: auto;
-              background: $black;
-              margin: 10px;
-            }
-          }
+						@media (max-width: $sm) {
+							margin-left: 0;
+							margin-bottom: px2rem(10);
+						}
 
-          .privacy-text {
-            margin-left: px2rem(30);
-            font-size: px2rem(11);
-            font-family: $button-font;
-            display: block;
-            line-height: px2rem(15);
-            color: $black;
-            margin-bottom: px2rem(20);
-            margin-top: px2rem(-2);
-            cursor: pointer;
+						a {
+							color: $black;
+							font-weight: 700;
+							text-decoration: none;
+						}
+					}
+				}
+			}
 
-            @media (max-width: $sm) {
-              margin-left: 0;
-              margin-bottom: px2rem(10);
-            }
+			.button-send {
+				@include flex-between;
+				flex-direction: column;
+				align-items: center;
+				position: relative;
+				margin-top: px2rem(40);
 
-            a {
-              color: $black;
-              font-weight: 700;
-              text-decoration: none;
-            }
-          }
-        }
-      }
+				@media (max-width: $sm) {
+					flex-direction: column;
+					align-items: flex-start;
+				}
 
-      .button-send {
-        @include flex-between;
-        flex-direction: column;
-        align-items: center;
-        position: relative;
-        margin-top: px2rem(40);
+				.fields-required {
+					font-size: px2rem(11);
+					font-weight: 400;
+					color: $black;
+					text-transform: uppercase;
+					padding-bottom: px2rem(10);
 
-        @media (max-width: $sm) {
-          flex-direction: column;
-          align-items: flex-start;
-        }
+					@media (max-width: $sm) {
+						display: block;
+						padding-left: 0;
+						margin-top: px2rem(10);
+						margin-bottom: px2rem(20);
+						justify-content: center;
+						font-size: px2rem(13);
+					}
+				}
 
-        .fields-required {
-          font-size: px2rem(11);
-          font-weight: 400;
-          color: $black;
-          text-transform: uppercase;
-          padding-bottom: px2rem(10);
+				.button-send-contact {
+					position: relative;
+					margin-right: px2rem(40);
 
-          @media (max-width: $sm) {
-            display: block;
-            padding-left: 0;
-            margin-top: px2rem(10);
-            margin-bottom: px2rem(20);
-            justify-content: center;
-            font-size: px2rem(13);
-          }
-        }
+					@media (max-width: $sm) {
+						margin: 0 auto;
+						padding-right: px2rem(60);
+					}
 
-        .button-send-contact {
-          position: relative;
-          margin-right: px2rem(40);
+					&:after {
+						content: "";
+						position: absolute;
+						bottom: px2rem(-7.5);
+						left: 0;
+						width: px2rem(174);
+						height: px2rem(9);
+						background: $grey;
+					}
+				}
 
-          @media (max-width: $sm) {
-            margin: 0 auto;
-            padding-right: px2rem(60);
-          }
+				input {
+					border: none;
+					box-shadow: none;
+					cursor: pointer;
+					outline: none;
+					opacity: 1;
+					margin: 0;
 
-          &:after {
-            content: '';
-            position: absolute;
-            bottom: px2rem(-7.5);
-            left: 0;
-            width: px2rem(174);
-            height: px2rem(9);
-            background: $grey;
-          }
-        }
+					@media (max-width: $sm) {
+						margin: 0 auto;
+					}
 
-        input {
-          border: none;
-          box-shadow: none;
-          cursor: pointer;
-          outline: none;
-          opacity: 1;
-          margin: 0;
+					&:disabled {
+						cursor: not-allowed;
+					}
+				}
 
-          @media (max-width: $sm) {
-            margin: 0 auto;
-          }
+				.ajax-loader {
+					position: absolute;
+					right: 0;
+					bottom: px2rem(-30);
+					margin: 0;
+				}
+			}
+		}
 
-          &:disabled {
-            cursor: not-allowed;
-          }
-        }
+		.cv-attach {
+			position: relative;
+			width: 100%;
 
-        .ajax-loader {
-          position: absolute;
-          right: 0;
-          bottom: px2rem(-30);
-          margin: 0;
-        }
-      }
-    }
+			@media (max-width: $sm) {
+				width: 100%;
+			}
 
-    .cv-attach {
-      position: relative;
-      width: 100%;
+			#file-input {
+				opacity: 0;
+				position: absolute;
+				cursor: pointer;
+				text-indent: px2rem(-9999);
+				width: 100%;
+			}
 
-      @media (max-width: $sm) {
-        width: 100%;
-      }
+			#file-input-show {
+				cursor: pointer;
+				background-image: url("../images/icons/attach.svg");
+				background-size: 4.5%;
+				background-repeat: no-repeat;
+				background-position: 1% 70%;
+				padding-left: px2rem(50);
+				width: 100%;
 
-      #file-input {
-        opacity: 0;
-        position: absolute;
-        cursor: pointer;
-        text-indent: px2rem(-9999);
-        width: 100%;
-      }
+				@media (max-width: $md) {
+					background-size: 10%;
+					background-position: 0;
+					padding-left: px2rem(40);
+				}
+			}
 
-      #file-input-show {
-        cursor: pointer;
-        background-image: url('../images/icons/attach.svg');
-        background-size: 4.5%;
-        background-repeat: no-repeat;
-        background-position: 1% 70%;
-        padding-left: px2rem(50);
-        width: 100%;
-
-        @media (max-width: $md) {
-          background-size: 10%;
-          background-position: 0;
-          padding-left: px2rem(40);
-        }
-      }
-
-      .wpcf7-not-valid-tip {
-        position: absolute;
-        width: px2rem(300);
-        display: block;
-        left: 0;
-        bottom: px2rem(-35);
-      }
-    }
-  }
+			.wpcf7-not-valid-tip {
+				position: absolute;
+				width: px2rem(300);
+				display: block;
+				left: 0;
+				bottom: px2rem(-35);
+			}
+		}
+	}
 }

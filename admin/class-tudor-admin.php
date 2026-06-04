@@ -123,7 +123,6 @@ class Tudor_Admin
 
 	public function include_template_files($template)
 	{
-
 		switch (true) {
 			case is_page_template('home-tudor.php'):
 				$template = TUDOR_ROOT . '/templates/home-tudor.php';
@@ -163,10 +162,9 @@ class Tudor_Admin
 
 		global $post;
 
-		$locale     = defined('ICL_LANGUAGE_CODE') ? ICL_LANGUAGE_CODE : 'it';
-		$prod_brands = wp_get_post_terms($post->ID, 'product_brand');
+		// $product non è ancora disponibile, usiamo $post->ID
+		$product = wc_get_product($post->ID);
 
-		return has_child_category($post->ID, 'tudor', $locale)
-			|| (isset($prod_brands[0]) && strtolower($prod_brands[0]->slug) === 'tudor');
+		return check_is_tudor($product);
 	}
 }

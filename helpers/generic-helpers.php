@@ -15,112 +15,115 @@ if (!function_exists("is_staging")) {
 }
 
 if (!function_exists("get_tudor_attributes")) {
+	function get_tudor_attributes($prod_id)
+	{
+		$details = [];
+		$details_raw = get_post_meta($prod_id, 'eg-details', true);
 
-    function get_tudor_attributes($prod_id)
-    {
-        $details = [];
-        $details_raw = get_post_meta($prod_id, 'eg-details', true);
+		if ($details_raw) {
+			if (is_object($details_raw) || is_array($details_raw)) {
+				$details = (array)$details_raw;
+			} else if (is_string($details_raw)) {
+				$first = @unserialize($details_raw);
+				if ($first !== false) {
+					if (is_string($first)) {
+						$second = @unserialize($first);
+						$details = $second !== false ? (array)$second : (array)$first;
+					} else {
+						$details = (array)$first;
+					}
+				}
+			}
+		}
 
-        if ($details_raw) {
-            if (is_object($details_raw) || is_array($details_raw)) {
-                $details = (array)$details_raw;
-            } else if (is_string($details_raw)) {
-                $first = @unserialize($details_raw);
-                if ($first !== false) {
-                    if (is_string($first)) {
-                        $second = @unserialize($first);
-                        $details = $second !== false ? (array)$second : (array)$first;
-                    } else {
-                        $details = (array)$first;
-                    }
-                }
-            }
-        }
+		// Fallback agli attributi WooCommerce se eg-details è vuoto
+		if (empty($details)) {
+			$details = get_tudor_attributes_from_wc($prod_id);
+		}
 
-        return $details;
-    }
+		return $details;
+	}
 }
 
 if (!function_exists("get_tudor_attributes_from_wc")) {
-    /**
-     * Fallback: legge gli attributi locali WooCommerce (TUDOR_*)
-     * e li restituisce come array compatibile con la struttura AlternateDescriptions.
-     * Ogni elemento ha la forma: ['Key' => 'TUDOR_CASSA', 'Description' => 'valore']
-     */
-    function get_tudor_attributes_from_wc($prod_id)
-    {
-        $product = wc_get_product($prod_id);
-        if (!$product) {
-            return [];
-        }
+	/**
+	 * Fallback: legge gli attributi locali WooCommerce (TUDOR_*)
+	 * e li restituisce come array compatibile con la struttura AlternateDescriptions.
+	 * Ogni elemento ha la forma: ['Key' => 'TUDOR_CASSA', 'Description' => 'valore']
+	 */
+	function get_tudor_attributes_from_wc($prod_id)
+	{
+		$product = wc_get_product($prod_id);
+		if (!$product) {
+			return [];
+		}
 
-        $attributes = $product->get_attributes();
-        $result = [];
+		$attributes = $product->get_attributes();
+		$result = [];
 
-        foreach ($attributes as $attr_name => $attr_obj) {
-            // Gli attributi locali sono istanze di WC_Product_Attribute
-            if (!($attr_obj instanceof WC_Product_Attribute)) {
-                continue;
-            }
+		foreach ($attributes as $attr_name => $attr_obj) {
+			// Gli attributi locali sono istanze di WC_Product_Attribute
+			if (!($attr_obj instanceof WC_Product_Attribute)) {
+				continue;
+			}
 
-            $name = strtoupper($attr_obj->get_name()); // es. "TUDOR_CASSA"
+			$name = strtoupper($attr_obj->get_name()); // es. "TUDOR_CASSA"
 
-            // Attributi locali: i valori sono in get_options() come array di stringhe
-            $options = $attr_obj->get_options();
-            $value = !empty($options) ? implode(', ', $options) : '';
+			// Attributi locali: i valori sono in get_options() come array di stringhe
+			$options = $attr_obj->get_options();
+			$value = !empty($options) ? implode(', ', $options) : '';
 
-            $result[] = [
-                'Key'         => $name,
-                'Description' => $value,
-            ];
-        }
+			$result[] = [
+				'Key'         => $name,
+				'Description' => $value,
+			];
+		}
 
-        return $result;
-    }
+		return $result;
+	}
 }
 
 if (!function_exists("get_prod_data")) {
-    function get_prod_data($prod_id, $key, $return_array = true)
-    {
-        $data = get_tudor_attributes($prod_id);
-        if (isset($data[$key])) {
-            return $return_array ? (array) $data[$key] : $data[$key];
-        }
-        return null;
-    }
+	function get_prod_data($prod_id, $key, $return_array = true)
+	{
+		$data = get_tudor_attributes($prod_id);
+		if (isset($data[$key])) {
+			return $return_array ? (array) $data[$key] : $data[$key];
+		}
+		return null;
+	}
 }
 
 if (!function_exists("get_nested_data")) {
-    function get_nested_data($prod_id, $key, $child_key = null)
-    {
-        $data = get_prod_data($prod_id, $key);
+	function get_nested_data($prod_id, $key, $child_key = null)
+	{
+		$data = get_prod_data($prod_id, $key);
 
-        // Fallback agli attributi WooCommerce se eg-details non ha il dato
-        if (empty($data) && $child_key !== null) {
-            $wc_attrs = get_tudor_attributes_from_wc($prod_id);
-            $index = array_column($wc_attrs, null, 'Key');
-            return isset($index[$child_key]) ? $index[$child_key]['Description'] : null;
-        }
+		// Fallback agli attributi WooCommerce se eg-details non ha il dato
+		if (empty($data) && $child_key !== null) {
+			$wc_attrs = get_tudor_attributes_from_wc($prod_id);
+			$index = array_column($wc_attrs, 'Description', 'Key');
+			return isset($index[$child_key]) ? $index[$child_key] : null;
+		}
 
-        if (!isset($data)) {
-            return [];
-        }
+		if (empty($data)) {
+			return [];
+		}
 
-        $data = array_map(fn($item) => (array) $item, $data);
+		$data = array_map(fn($item) => (array) $item, $data);
 
-        if ($child_key === null) {
-            return (array) $data;
-        }
+		if ($child_key === null) {
+			return (array) $data;
+		}
 
-        $index = array_column($data, null, 'Key');
-        return isset($index[$child_key]) ? $index[$child_key]['Description'] : null;
-    }
+		$index = array_column($data, null, 'Key');
+		return isset($index[$child_key]) ? $index[$child_key]['Description'] : null;
+	}
 }
 
 if (!function_exists("retrieve_desc_family")) {
 	function retrieve_desc_family($family)
 	{
-
 		$tudor_family_desc = require_once('tudor-family-desc.php');
 		return isset($tudor_family_desc[$family]) ? $tudor_family_desc[$family] : '';
 	}
@@ -150,24 +153,100 @@ if (!function_exists("tudor_breadcrumb")) {
 }
 
 if (!function_exists("check_is_tudor")) {
-	function check_is_tudor()
+	function check_is_tudor($product = null)
 	{
-		global $product;
-		if (isset($product) && is_a($product, 'WC_Product')) {
-			$prod_id = $product->get_id();
-
-			// Check if the product belongs to a 'tudor' product_cat term (any depth)
-			$terms = wp_get_post_terms($prod_id, 'product_cat', ['fields' => 'slugs']);
-			$is_tudor_category = in_array('tudor', (array) $terms);
-
-			// Check brand taxonomy
-			$prod_brands = wp_get_post_terms($prod_id, 'product_brand');
-			$is_tudor_brand = !empty($prod_brands) && strtolower($prod_brands[0]->slug) === 'tudor';
-
-			return $is_tudor_category || $is_tudor_brand;
+		// Fallback se non passato
+		if (!$product || !is_a($product, 'WC_Product')) {
+			global $post;
+			$product = wc_get_product($post->ID);
 		}
+
+		if (!$product || !is_a($product, 'WC_Product')) {
+			return false;
+		}
+
+		$prod_id = $product->get_id();
+
+		$tudor_term = get_term_by('slug', 'tudor', 'product_cat');
+		if (!$tudor_term) {
+			return false;
+		}
+
+		$tudor_id = $tudor_term->term_id;
+
+		$product_terms = wp_get_post_terms($prod_id, 'product_cat');
+		if (is_wp_error($product_terms) || empty($product_terms)) {
+			return false;
+		}
+
+		foreach ($product_terms as $term) {
+			if ($term->term_id === $tudor_id) {
+				return true;
+			}
+			$ancestors = get_ancestors($term->term_id, 'product_cat', 'taxonomy');
+			if (in_array($tudor_id, $ancestors)) {
+				return true;
+			}
+		}
+
+		// Brand taxonomy
+		$prod_brands = wp_get_post_terms($prod_id, 'product_brand');
+		if (!is_wp_error($prod_brands) && !empty($prod_brands)) {
+			if (strtolower($prod_brands[0]->slug) === 'tudor') {
+				return true;
+			}
+		}
+
 		return false;
 	}
+}
+
+/**
+ * Ottiene 4 prodotti WooCommerce random con categoria padre "tudor"
+ * o con una categoria figlia di "tudor".
+ */
+function get_prodotti_tudor($numero = 4)
+{
+
+	// 1. Recupera la categoria padre "tudor" per slug
+	$tudor = get_term_by('slug', 'tudor', 'product_cat');
+
+	if (! $tudor || is_wp_error($tudor)) {
+		return [];
+	}
+
+	// 2. Raccoglie gli ID: padre + tutte le figlie (qualsiasi profondità)
+	$cat_ids = [$tudor->term_id];
+
+	$figle = get_terms([
+		'taxonomy'   => 'product_cat',
+		'child_of'   => $tudor->term_id,
+		'hide_empty' => false,
+		'fields'     => 'ids',
+	]);
+
+	if (! empty($figle) && ! is_wp_error($figle)) {
+		$cat_ids = array_merge($cat_ids, $figle);
+	}
+
+	// 3. Query prodotti
+	$args = [
+		'post_type'      => 'product',
+		'post_status'    => 'publish',
+		'posts_per_page' => $numero,
+		'orderby'        => 'rand',   // random ad ogni chiamata
+		'tax_query'      => [
+			[
+				'taxonomy'         => 'product_cat',
+				'field'            => 'term_id',
+				'terms'            => $cat_ids,
+				'operator'         => 'IN',
+				'include_children' => false, // già gestiti sopra
+			],
+		],
+	];
+
+	return new WP_Query($args);
 }
 
 if (!function_exists("pxl_translate")) {
