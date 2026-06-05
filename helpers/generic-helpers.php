@@ -167,12 +167,18 @@ if (!function_exists("check_is_tudor")) {
 
 		$prod_id = $product->get_id();
 
-		$tudor_term = get_term_by('slug', 'tudor', 'product_cat');
-		if (!$tudor_term) {
+		$tudor_ids = [];
+		$tudor_term_it = get_term_by('slug', 'tudor', 'product_cat');
+		if ($tudor_term_it) {
+			$tudor_ids[] = $tudor_term_it->term_id;
+		}
+		$tudor_term_en = get_term_by('slug', 'tudor-en', 'product_cat');
+		if ($tudor_term_en) {
+			$tudor_ids[] = $tudor_term_en->term_id;
+		}
+		if (empty($tudor_ids)) {
 			return false;
 		}
-
-		$tudor_id = $tudor_term->term_id;
 
 		$product_terms = wp_get_post_terms($prod_id, 'product_cat');
 		if (is_wp_error($product_terms) || empty($product_terms)) {
@@ -180,11 +186,11 @@ if (!function_exists("check_is_tudor")) {
 		}
 
 		foreach ($product_terms as $term) {
-			if ($term->term_id === $tudor_id) {
+			$ancestors = get_ancestors($term->term_id, 'product_cat', 'taxonomy');
+			if (in_array($term->term_id, $tudor_ids)) {
 				return true;
 			}
-			$ancestors = get_ancestors($term->term_id, 'product_cat', 'taxonomy');
-			if (in_array($tudor_id, $ancestors)) {
+			if (!empty(array_intersect($tudor_ids, $ancestors))) {
 				return true;
 			}
 		}
@@ -208,25 +214,29 @@ if (!function_exists("check_is_tudor")) {
 function get_prodotti_tudor($numero = 4)
 {
 
-	// 1. Recupera la categoria padre "tudor" per slug
-	$tudor = get_term_by('slug', 'tudor', 'product_cat');
+	// Raccoglie radici tudor per IT e EN
+	$root_slugs = ['tudor', 'tudor-en'];
+	$cat_ids = [];
 
-	if (! $tudor || is_wp_error($tudor)) {
-		return [];
+	foreach ($root_slugs as $slug) {
+		$root = get_term_by('slug', $slug, 'product_cat');
+		if (! $root || is_wp_error($root)) {
+			continue;
+		}
+		$cat_ids[] = $root->term_id;
+		$figle = get_terms([
+			'taxonomy'   => 'product_cat',
+			'child_of'   => $root->term_id,
+			'hide_empty' => false,
+			'fields'     => 'ids',
+		]);
+		if (! empty($figle) && ! is_wp_error($figle)) {
+			$cat_ids = array_merge($cat_ids, $figle);
+		}
 	}
 
-	// 2. Raccoglie gli ID: padre + tutte le figlie (qualsiasi profondità)
-	$cat_ids = [$tudor->term_id];
-
-	$figle = get_terms([
-		'taxonomy'   => 'product_cat',
-		'child_of'   => $tudor->term_id,
-		'hide_empty' => false,
-		'fields'     => 'ids',
-	]);
-
-	if (! empty($figle) && ! is_wp_error($figle)) {
-		$cat_ids = array_merge($cat_ids, $figle);
+	if (empty($cat_ids)) {
+		return new WP_Query(['post__in' => [0]]);
 	}
 
 	// 3. Query prodotti
